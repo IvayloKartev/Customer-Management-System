@@ -35,7 +35,7 @@ import WidgetsBrand from './WidgetsBrand'
 import WidgetsDropdown from './WidgetsDropdown'
 
 const Widgets = () => {
-  const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+  const random = (min : any, max : any) => Math.floor(Math.random() * (max - min + 1) + min)
 
   return (
     <CCard className="mb-4">

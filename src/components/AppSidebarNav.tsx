@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 
 import { CBadge } from '@coreui/react'
 
-export const AppSidebarNav = ({ items }) => {
+export const AppSidebarNav = ({ items } : any) => {
   const location = useLocation()
-  const navLink = (name, icon, badge) => {
+  const navLink = (name : any, icon : any, badge : any) => {
     return (
       <>
         {icon && icon}
@@ -20,7 +20,7 @@ export const AppSidebarNav = ({ items }) => {
     )
   }
 
-  const navItem = (item, index) => {
+  const navItem = (item : any, index : any) => {
     const { component, name, badge, icon, ...rest } = item
     const Component = component
     return (
@@ -36,18 +36,18 @@ export const AppSidebarNav = ({ items }) => {
       </Component>
     )
   }
-  const navGroup = (item, index) => {
+  const navGroup = (item : any, index : any) => {
     const { component, name, icon, to, ...rest } = item
     const Component = component
     return (
       <Component
         idx={String(index)}
         key={index}
-        toggler={navLink(name, icon)}
+        toggler={navLink(name, icon, "")}
         visible={location.pathname.startsWith(to)}
         {...rest}
       >
-        {item.items?.map((item, index) =>
+        {item.items?.map((item : any, index : any) =>
           item.items ? navGroup(item, index) : navItem(item, index),
         )}
       </Component>
@@ -57,7 +57,7 @@ export const AppSidebarNav = ({ items }) => {
   return (
     <React.Fragment>
       {items &&
-        items.map((item, index) => (item.items ? navGroup(item, index) : navItem(item, index)))}
+        items.map((item : any, index : any) => (item.items ? navGroup(item, index) : navItem(item, index)))}
     </React.Fragment>
   )
 }

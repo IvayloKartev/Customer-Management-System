@@ -5,7 +5,7 @@ import CIcon from '@coreui/icons-react'
 import { cibFacebook, cibLinkedin, cibTwitter, cilCalendar } from '@coreui/icons'
 import { CChart } from '@coreui/react-chartjs'
 
-const WidgetsBrand = ({ withCharts }) => {
+const WidgetsBrand = ({ withCharts } : any) => {
   const chartOptions = {
     elements: {
       line: {
