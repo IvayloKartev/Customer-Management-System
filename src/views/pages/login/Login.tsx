@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   CButton,
@@ -15,8 +15,58 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import prisma from 'prisma/db';
+import type { InferGetServerSidePropsType, GetServerSideProps, GetStaticProps } from 'next'
+import axios from 'axios'
+import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
+import { setUser } from '@/redux/actions'
 
-const Login = () => {
+let nameG = "";
+
+interface UserProp {
+  user : User
+}
+
+interface User {
+  name : string,
+  email : string,
+  password : string
+}
+
+interface Props {
+  props : UserProp
+}
+
+interface RespProp {
+  login : string,
+  user : User
+}
+const Login = (props : Props) => {
+
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  async function checkUser() {
+    await axios.post("../api/loginuser", {
+      name : name,
+      password : password
+    }).then(async (response) => {
+      const data : RespProp = await response.data;
+      if(data.login === "OK") {
+        console.log(data.user.name);
+        dispatch(setUser(data.user));
+        window.location.href = "/#/dashboard";
+      }
+      else console.log(data.login);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -32,7 +82,10 @@ const Login = () => {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput placeholder="Username" autoComplete="username" onChange={(e) => {
+                        setName(e.target.value)
+                        nameG = e.target.value 
+                        }}/>
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -42,11 +95,12 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="current-password"
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton color="primary" className="px-4" onClick={checkUser}>
                           Login
                         </CButton>
                       </CCol>
@@ -81,6 +135,19 @@ const Login = () => {
       </CContainer>
     </div>
   )
+}
+
+export const getStaticProps : GetStaticProps =  async (context) => {
+  const user = await prisma.user.findUnique({
+    where : {
+      name : nameG
+    }
+  })
+  const all = await prisma.user.findMany();
+  console.log(" == "+all);
+  return {
+    props: {user}
+  };
 }
 
 export default Login
