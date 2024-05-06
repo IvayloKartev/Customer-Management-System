@@ -12,7 +12,11 @@ model User {
   name String @unique
   email String @unique
   password String
-  companies Company[] 
+  names String? @unique
+  phone String? @unique
+  address String?
+  isAdmin Boolean @default(false)
+  companies Company[]
 }
 
 model Company {
@@ -22,3 +26,19 @@ model Company {
   ownerId Int @unique
 }
 
+model Log {
+  id Int @id @default(autoincrement())
+  action Actions
+  date DateTime
+  by String
+  userId Int 
+}
+
+enum Actions {
+    AddUser
+    DeleteUser
+    EditUser
+    AddCompany
+    DeleteCompany
+    EditCompany
+}
