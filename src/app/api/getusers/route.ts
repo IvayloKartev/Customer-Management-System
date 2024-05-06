@@ -8,25 +8,23 @@ interface AccountData {
   password : string
 }
 
-export async function GET(req : Request, res : any) {
-  const data : AccountData = await req.json();
+export async function GET(req : Request) {
+  //const reqData : AccountData = await req.json();
   try {
-    const users = await prisma.user.findUnique({
-        where : {
-            name : data.name
-        }
+    const users = await prisma.user.findMany({
+      select : {
+        id : true,
+        names : true,
+        name : true,
+        email : true,
+        phone : true,
+        companies : true
+      }
     });
-    if(users != null && data.password === users.password) {
-        return NextResponse.json({
-            login : "OK",
-            user : users
-        })
-    } else {
-        return NextResponse.json({
-            login : "User does not exist or wrong password.",
-            user : null
-        })
-    }  
+    return NextResponse.json({
+        status : "200 OK",
+        data : users
+    })
   } catch (err) {
     return NextResponse.json({
       error : err

@@ -1,5 +1,7 @@
 {
   "/not-found": "app/not-found.js",
-  "/api/adduser/route": "app/api/adduser/route.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/api/loginuser/route": "app/api/loginuser/route.js",
+  "/api/getusers/route": "app/api/getusers/route.js",
+  "/api/adduser/route": "app/api/adduser/route.js"
 }

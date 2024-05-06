@@ -47,7 +47,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'View users',
-        to: '/base/breadcrumbs',
+        href: '/#/userstable'
       },
       {
         component: CNavItem,
