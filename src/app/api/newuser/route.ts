@@ -1,0 +1,9 @@
+import prisma from "prisma/db";
+import { NextResponse } from "next/server";
+
+export async function POST(request: Request) {
+  //const body = await request.json();
+  return NextResponse.json({
+    hi : "dfe"
+  });
+}

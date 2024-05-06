@@ -34,9 +34,9 @@ const Register = () => {
     console.log('here')
     console.log(name)
     await axios.post("../api/registeruser", {
-      name,
-      email,
-      password
+      name : name,
+      email : email,
+      password : password
     });
     //window.location.reload();
     
