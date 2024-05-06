@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("mariadb://root:password@localhost:0/cms")
+  url      = "mysql://root:@localhost:3306/cms"
 }
 
 model User {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   CButton,
   CCard,
@@ -13,8 +13,35 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import { PrismaClient } from '@prisma/client'
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+import prisma from 'prisma/db';
+import axios from 'axios';
+
+interface AccountData {
+  name : string,
+  email : string, 
+  password : string
+}
 
 const Register = () => {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  async function sendToDB() {
+    console.log('here')
+    console.log(name)
+    await axios.post("../api/registeruser", {
+      name,
+      email,
+      password
+    });
+    //window.location.reload();
+    
+  }
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -29,11 +56,11 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" />
+                    <CFormInput placeholder="Username" autoComplete="username" onChange={e => {setName(e.target.value)}}/>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
-                    <CFormInput placeholder="Email" autoComplete="email" />
+                    <CFormInput placeholder="Email" autoComplete="email" onChange={e => {setEmail(e.target.value)}}/>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -43,6 +70,7 @@ const Register = () => {
                       type="password"
                       placeholder="Password"
                       autoComplete="new-password"
+                      onChange={e => {setPassword(e.target.value)}}
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
@@ -56,7 +84,7 @@ const Register = () => {
                     />
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton color="success">Create Account</CButton>
+                    <CButton color="success" onClick={() => sendToDB()}>Create Account</CButton>
                   </div>
                 </CForm>
               </CCardBody>
