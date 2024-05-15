@@ -192,7 +192,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "9301f07ff1ea2073"; }
+/******/ 		__webpack_require__.h = function() { return "738a0aae54641a36"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -792,7 +792,7 @@
 /******/ 		};
 /******/ 		
 /******/ 		__webpack_require__.f.miniCss = function(chunkId, promises) {
-/******/ 			var cssChunks = {"_app-pages-browser_src_layout_DefaultLayout_tsx":1,"_app-pages-browser_src_views_pages_adduser_AddUser_tsx":1,"_app-pages-browser_src_views_pages_userstable_UsersTable_tsx":1,"_app-pages-browser_src_views_pages_addcompany_addcompany_tsx":1,"_app-pages-browser_src_views_pages_companiestable_CompaniesTable_tsx":1};
+/******/ 			var cssChunks = {"_app-pages-browser_src_layout_DefaultLayout_tsx":1,"_app-pages-browser_src_views_pages_adduser_AddUser_tsx":1,"_app-pages-browser_src_views_pages_userstable_UsersTable_tsx":1,"_app-pages-browser_src_views_pages_addcompany_addcompany_tsx":1,"_app-pages-browser_src_views_pages_companiestable_CompaniesTable_tsx":1,"_app-pages-browser_src_views_pages_user_User_js":1};
 /******/ 			if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 			else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 				promises.push(installedCssChunks[chunkId] = loadStylesheet(chunkId).then(function() {

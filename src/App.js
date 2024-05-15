@@ -20,6 +20,7 @@ const AddUser = React.lazy(() => import('./views/pages/adduser/AddUser'))
 const UsersTable = React.lazy(() => import('./views/pages/userstable/UsersTable'))
 const AddCompany = React.lazy(() => import('./views/pages/addcompany/addcompany'))
 const CompaniesTable = React.lazy(() => import('./views/pages/companiestable/CompaniesTable'))
+const User = React.lazy(() => import('./views/pages/user/[User]'))
 
 class App extends Component {
   render() {
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/userstable" name="Users Table" element={<UsersTable/>} />
             <Route exact path="/addcompany" name="Add Company" element={<AddCompany/>} />
             <Route exact path="/companiestable" name="Companies Table" element={<CompaniesTable/>} />
+            <Route exact path="/user/:userId" name="User" element={<User/>} />
             <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>

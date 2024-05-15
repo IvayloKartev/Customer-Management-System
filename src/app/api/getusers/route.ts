@@ -8,7 +8,7 @@ interface AccountData {
   password : string
 }
 
-export async function GET(req : Request) {
+export async function GET(req : Request, context : any) {
   //const reqData : AccountData = await req.json();
   try {
     const users = await prisma.user.findMany({
