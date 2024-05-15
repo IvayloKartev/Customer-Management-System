@@ -66,11 +66,13 @@ const _nav = [
         component: CNavItem,
         name: 'Add new company',
         to: '/buttons/buttons',
+        href: '/#/addcompany'
       },
       {
         component: CNavItem,
         name: 'View companies',
         to: '/buttons/button-groups',
+        href: '/#/companiestable'
       },
       {
         component: CNavItem,

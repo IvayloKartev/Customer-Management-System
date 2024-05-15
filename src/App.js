@@ -18,6 +18,8 @@ const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const AddUser = React.lazy(() => import('./views/pages/adduser/AddUser'))
 const UsersTable = React.lazy(() => import('./views/pages/userstable/UsersTable'))
+const AddCompany = React.lazy(() => import('./views/pages/addcompany/addcompany'))
+const CompaniesTable = React.lazy(() => import('./views/pages/companiestable/CompaniesTable'))
 
 class App extends Component {
   render() {
@@ -31,6 +33,8 @@ class App extends Component {
             <Route exact path="/500" name="Page 500" element={<Page500 />} />
             <Route exact path="/adduser" name="Add User" element={<AddUser />} />
             <Route exact path="/userstable" name="Users Table" element={<UsersTable/>} />
+            <Route exact path="/addcompany" name="Add Company" element={<AddCompany/>} />
+            <Route exact path="/companiestable" name="Companies Table" element={<CompaniesTable/>} />
             <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>
