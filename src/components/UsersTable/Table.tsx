@@ -44,12 +44,12 @@ export default function Table() {
       function generateButton(id : number) {
         return (
           <div style={{display : 'flex', flexDirection : 'row', gap : 10}}>
-            <a href={`/user/${id}`}>
+            <a href={`/#/user/${id}`}>
                 <div style={{width : 30, height : 30, backgroundColor : '#3399ff', borderRadius : 10, display : 'flex', justifyContent : 'center', alignItems: 'center'}}>
                   <FontAwesomeIcon icon={faEye} color={"white"}/>
                 </div>
             </a>
-            <a href={`/edituser/${id}`}>
+            <a href={`/#/edituser/${id}`}>
               <div style={{width : 30, height : 30, backgroundColor : 'green', borderRadius : 10, display : 'flex', justifyContent : 'center', alignItems: 'center'}}>
                     <FontAwesomeIcon icon={faEdit} color={"white"}/>
               </div>

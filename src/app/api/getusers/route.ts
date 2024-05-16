@@ -14,10 +14,12 @@ export async function GET(req : Request, context : any) {
     const users = await prisma.user.findMany({
       select : {
         id : true,
+        password : true,
         names : true,
         name : true,
         email : true,
         phone : true,
+        address : true,
         companies : true
       }
     });

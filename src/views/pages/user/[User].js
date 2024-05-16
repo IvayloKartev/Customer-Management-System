@@ -6,12 +6,14 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { setRequestMeta } from 'next/dist/server/request-meta';
+import EditSheet from '@/components/User/editsheet';
 
-const User = () => {
+const User = ({isEdit}) => {
 
   const {userId} = useParams();
   const [user, setUser] = useState(null);
-
+  console.log(isEdit);
+  //isEdit = false;
   let need = "";
   useEffect(() => {
     const fetchData = async () => {
@@ -44,13 +46,14 @@ const User = () => {
       <div className="wrapper d-flex flex-column min-vh-100 bg-light">
         <AppHeader />
         <div className="body flex-grow-1 px-3">
-          <Sheet names={user.names} email={user.email} password={user.password} address={user.address}/>
+          { isEdit ? <Sheet id={user.id} name={user.name} names={user.names} email={user.email} password={user.password} address={user.address} phone={user.phone}/>
+          : <EditSheet idA={user.id} nameA={user.name} namesA={user.names} emailA={user.email} passwordA={user.password} addressA={user.address} phoneA={user.phone}/> } 
         </div>
         <AppFooter />
       </div>
     </div>
   )
 }
-
+//
 
 export default User

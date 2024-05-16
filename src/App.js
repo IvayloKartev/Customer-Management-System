@@ -36,7 +36,8 @@ class App extends Component {
             <Route exact path="/userstable" name="Users Table" element={<UsersTable/>} />
             <Route exact path="/addcompany" name="Add Company" element={<AddCompany/>} />
             <Route exact path="/companiestable" name="Companies Table" element={<CompaniesTable/>} />
-            <Route exact path="/user/:userId" name="User" element={<User/>} />
+            <Route exact path="/user/:userId" name="User" element={<User isEdit={true}/>} />
+            <Route exact path="/edituser/:userId" name="Edit User" element={<User isEdit={false} />} />
             <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>
