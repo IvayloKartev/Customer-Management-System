@@ -33,11 +33,12 @@ class App extends Component {
             <Route exact path="/404" name="Page 404" element={<Page404 />} />
             <Route exact path="/500" name="Page 500" element={<Page500 />} />
             <Route exact path="/adduser" name="Add User" element={<AddUser />} />
-            <Route exact path="/userstable" name="Users Table" element={<UsersTable/>} />
+            <Route exact path="/userstable" name="Users Table" element={<UsersTable isDelete={false}/>} />
             <Route exact path="/addcompany" name="Add Company" element={<AddCompany/>} />
             <Route exact path="/companiestable" name="Companies Table" element={<CompaniesTable/>} />
             <Route exact path="/user/:userId" name="User" element={<User isEdit={true}/>} />
             <Route exact path="/edituser/:userId" name="Edit User" element={<User isEdit={false} />} />
+            <Route exact path="/deleteusers" name="Delete User" element={<UsersTable isDelete={true}/>} />
             <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>

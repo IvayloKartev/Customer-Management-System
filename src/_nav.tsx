@@ -52,7 +52,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Delete users',
-        to: '/base/carousels',
+        href: '/#/deleteusers'
       },
     ],
   },

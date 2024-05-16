@@ -28,10 +28,19 @@ interface TableProps {
   isDelete : boolean
 }
 
-export default function Table({isDelete} : TableProps) {
+export default function DeleteTable({isDelete} : TableProps) {
 
     const [items, setItems] = useState<Array<Account>>([]);
 
+    async function deleteFromDB(id : number) {
+        await axios.delete("/api/deleteuser", {
+            data : {
+                id : id 
+            }
+        }).then(() => {
+            location.reload();
+        })
+    }
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -47,18 +56,11 @@ export default function Table({isDelete} : TableProps) {
 
       function generateButton(id : number) {
           return (
-            <div style={{display : 'flex', flexDirection : 'row', gap : 10}}>
-              <a href={`/#/user/${id}`}>
-                  <div style={{width : 30, height : 30, backgroundColor : '#3399ff', borderRadius : 10, display : 'flex', justifyContent : 'center', alignItems: 'center'}}>
-                    <FontAwesomeIcon icon={faEye} color={"white"}/>
-                  </div>
-              </a>
-              <a href={`/#/edituser/${id}`}>
-                <div style={{width : 30, height : 30, backgroundColor : 'green', borderRadius : 10, display : 'flex', justifyContent : 'center', alignItems: 'center'}}>
-                      <FontAwesomeIcon icon={faEdit} color={"white"}/>
+            <a>
+                <div onClick={() => deleteFromDB(id)} style={{width : 30, height : 30, backgroundColor : '#d9534f', borderRadius : 10, display : 'flex', justifyContent : 'center', alignItems: 'center'}}>
+                    <FontAwesomeIcon icon={faTrashCan} color={"white"}/>
                 </div>
-              </a>
-            </div>
+            </a>
           ) 
      }
 
