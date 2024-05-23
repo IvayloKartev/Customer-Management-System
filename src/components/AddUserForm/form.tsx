@@ -65,7 +65,7 @@ export default function Form() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.get('/api/getusers');
+          const response = await axios.get('/api/getcompanies');
           const jsdata : ResponseProps = await response.data;
           setAllCompanies(jsdata.data);
         } catch (error) {

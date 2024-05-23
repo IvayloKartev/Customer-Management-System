@@ -1,4 +1,4 @@
-import { CTable } from "@coreui/react"
+import { CBadge, CTable } from "@coreui/react"
 import axios from "axios";
 import { useState, useEffect, ReactElement } from "react";
 import {
@@ -19,13 +19,31 @@ interface Account {
   password? : string,
   names? : string,
   phone? : string,
-  address? : string
+  address? : string,
+  companies? : Array<any>,
   _cellProps? : Object,
   actions? : ReactElement
 }
 
+interface AccountResp {
+  id : number
+  name? : string,
+  email? : string, 
+  password? : string,
+  names? : string,
+  phone? : string,
+  address? : string,
+  companies? : Array<Company>,
+}
+
 interface TableProps {
   isDelete : boolean
+}
+
+interface Company {
+  id : number,
+  name : string,
+  ownerId : number
 }
 
 export default function Table({isDelete} : TableProps) {
@@ -37,7 +55,6 @@ export default function Table({isDelete} : TableProps) {
         try {
           const response = await axios.get('/api/getusers');
           const jsdata : ResponseProps = response.data;
-          //setItems(jsdata.data);
           console.log(jsdata.data);
           addGeneratedButtons(jsdata.data);
         } catch (error) {
@@ -62,6 +79,12 @@ export default function Table({isDelete} : TableProps) {
           ) 
      }
 
+     function generateBadge(name : string) {
+      return (
+        <CBadge color="info">{name}</CBadge>
+      )
+     }
+
      async function addGeneratedButtons(itemsO : Array<Account>) {
         let newArr : Array<Account> = [];
         for(let i=0; i<itemsO.length; i++) {
@@ -69,6 +92,7 @@ export default function Table({isDelete} : TableProps) {
          const id = itemsO[i].id;
          console.log("id = " + id);
          itemsO[i].actions = generateButton(id);
+         itemsO[i].companies = itemsO[i].companies?.map(c => generateBadge(c.name))
          newArr.push(itemsO[i]);
         }
         console.log(newArr);

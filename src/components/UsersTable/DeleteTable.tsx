@@ -6,6 +6,7 @@ import {
 } from '@coreui/icons'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEdit, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { CBadge } from "@coreui/react";
 
 interface ResponseProps {
   status : string,
@@ -19,7 +20,8 @@ interface Account {
   password? : string,
   names? : string,
   phone? : string,
-  address? : string
+  address? : string,
+  companies : Array<any>,
   _cellProps? : Object,
   actions? : ReactElement
 }
@@ -64,6 +66,12 @@ export default function DeleteTable({isDelete} : TableProps) {
           ) 
      }
 
+     function generateBadge(name : string) {
+      return (
+        <CBadge color="info">{name}</CBadge>
+      )
+     }
+
      async function addGeneratedButtons(itemsO : Array<Account>) {
         let newArr : Array<Account> = [];
         for(let i=0; i<itemsO.length; i++) {
@@ -71,6 +79,7 @@ export default function DeleteTable({isDelete} : TableProps) {
          const id = itemsO[i].id;
          console.log("id = " + id);
          itemsO[i].actions = generateButton(id);
+         itemsO[i].companies = itemsO[i].companies?.map(c => generateBadge(c.name))
          newArr.push(itemsO[i]);
         }
         console.log(newArr);

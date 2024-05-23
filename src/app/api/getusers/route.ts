@@ -20,7 +20,12 @@ export async function GET(req : Request, context : any) {
         email : true,
         phone : true,
         address : true,
-        companies : true
+        companies : {
+          select : {
+            id : true,
+            name : true
+          }
+        }
       }
     });
     return NextResponse.json({
