@@ -13,7 +13,17 @@ export async function GET(req : Request) {
     const companies = await prisma.company.findMany({
       select : {
         id : true,
-        name : true
+        name : true,
+        bulstat : true,
+        owner : {
+          select : {
+            user : {
+              select : {
+                names : true
+              }
+            }
+          }
+        }
       }
     });
     return NextResponse.json({

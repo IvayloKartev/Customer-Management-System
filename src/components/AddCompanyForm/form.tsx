@@ -18,11 +18,11 @@ import {
 
 export default function Form() {
 
-    const [name, setName] = useState('');
+    const [bulstat, setBulstat] = useState('');
 
     async function sendToDB() {
       axios.post('/api/addcompany', {
-        name : name
+        bulstat : bulstat
       })
     }
     
@@ -40,7 +40,7 @@ export default function Form() {
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Name" autoComplete="name" onChange={t => setName(t.target.value)}/>
+                      <CFormInput placeholder="Bulstat" autoComplete="bulstat" onChange={t => setBulstat(t.target.value)}/>
                     </CInputGroup>
                     <div className="d-grid">
                       <CButton color="success" onClick={sendToDB}>Add Company</CButton>

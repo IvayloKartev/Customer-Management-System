@@ -1,6 +1,7 @@
 import prisma from "prisma/db";
 import { NextResponse } from "next/server";
 import { use } from "react";
+import UsersTable from "@/views/pages/userstable/UsersTable";
 export const dynamic = 'force-dynamic';
 
 interface AccountData {
@@ -22,8 +23,12 @@ export async function GET(req : Request, context : any) {
         address : true,
         companies : {
           select : {
-            id : true,
-            name : true
+            company : {
+              select : {
+                id : true,
+                name : true
+              }
+            } 
           }
         }
       }

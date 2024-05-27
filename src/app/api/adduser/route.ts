@@ -42,10 +42,15 @@ export async function POST(req : Request, res : any) {
         phone : data.phone,
         address : data.address,
         companies : {
-          connect : {
-            id : company?.id,
-            name : company?.name
-          }
+          create : [
+            {
+              company : {
+                connect : {
+                  name : company?.name
+                }
+              }
+            }
+          ]
         }
       },
   });

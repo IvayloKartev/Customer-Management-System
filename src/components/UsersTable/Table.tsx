@@ -92,7 +92,7 @@ export default function Table({isDelete} : TableProps) {
          const id = itemsO[i].id;
          console.log("id = " + id);
          itemsO[i].actions = generateButton(id);
-         itemsO[i].companies = itemsO[i].companies?.map(c => generateBadge(c.name))
+         itemsO[i].companies = itemsO[i].companies?.map(c => generateBadge(c.company.name))
          newArr.push(itemsO[i]);
         }
         console.log(newArr);
